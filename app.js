@@ -3,17 +3,17 @@ let items = [
     {
         name: '鉛筆',
         price: 300,
-        quantity: 1
+        quantity: 0
     },
     {
         name: 'ノート',
         price: 400,
-        quantity: 2
+        quantity: 0
     },
     {
         name: '消しゴム',
         price: 500,
-        quantity: 3
+        quantity: 0
     }
 ];
 
@@ -44,6 +44,18 @@ let vm = new Vue({
         //合計が1000円以上のときに表示する
         canBuy: function () {
             return this.totalPrice >= 1000
+        },
+        errorMessageClass: function () {
+            return {
+                error: !this.canBuy
+            }
+        },
+        errorMessageStyle: function () {
+            return {
+                border: this.canBuy ? '' : '1px solid red',
+                color: this.canBuy ? '' : 'red',
+                display: this.canBuy ? 'none' : ''
+            }
         }
     }
 });
