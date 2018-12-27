@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>はじめてのVue.js</title>
-<script src="./vue.js"></script>
+<body>
 <div id="app">
-    <p>{{message}}</p>
+    <p>{{items[0].name}}</p>
 </div>
-<script>
-    console.assert(typeof Vue !== 'undefined');
-    let vm = new Vue({
-        el: '#app',
-        data: {
-            message: 'こんにちは'
-        }
-    });
-    vm.$mount(el);
-</script>
+<script src="./vue.js"></script>
+<script src="./app.js"></script>
+</body>
