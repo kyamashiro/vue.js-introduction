@@ -17,9 +17,18 @@ let items = [
     }
 ];
 
-let vm = new Vue({
-    el: '#b-button',
+new Vue({
+    el: '#app',
     data: {
-        canBuy: false
+        items: items
+    },
+    filters: {
+        numberWithDelimiter: function (value) {
+            if (!value) {
+                return 0
+            }
+
+            return value.toString().replace(/(\d)(?=(\d{3})+$)/g,'$1,')
+        }
     }
 });

@@ -2,7 +2,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>はじめてのVue.js</title>
 <body>
-<button id="b-button" v-bind:disabled="!canBuy">購入</button>
+<div id="app">
+    <p>
+        {{items[0].name}}:{{items[0].price}} x {{items[0].quantity}}
+    </p>
+    <p>
+        フィルタ処理例: {{1000 | numberWithDelimiter}}
+    </p>
+</div>
 <script src="./vue.js"></script>
 <script src="./app.js"></script>
 </body>
