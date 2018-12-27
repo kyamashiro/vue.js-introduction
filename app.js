@@ -22,6 +22,15 @@ let vm = new Vue({
     data: {
         items: items
     },
+    filters: {
+        numberWithDelimiter: function (value) {
+            if (!value) {
+                return 0
+            }
+
+            return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+        }
+    },
     computed: {
         totalPrice: function () {
             return this.items.reduce(
@@ -31,6 +40,10 @@ let vm = new Vue({
         },
         totalPriceWithTax: function () {
             return Math.floor(this.totalPrice * 1.08)
+        },
+        //合計が1000円以上のときに表示する
+        canBuy: function () {
+            return this.totalPrice >= 1000
         }
     }
 });
