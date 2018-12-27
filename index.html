@@ -4,10 +4,10 @@
 <body>
 <div id="app">
     <p>
-        {{items[0].name}}:{{items[0].price}} x {{items[0].quantity}}
+        合計:{{totalPrice}}(税抜)
     </p>
     <p>
-        フィルタ処理例: {{1000 | numberWithDelimiter}}
+        合計:{{totalPriceWithTax}}(税込)
     </p>
 </div>
 <script src="./vue.js"></script>
