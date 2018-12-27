@@ -18,14 +18,8 @@ let items = [
 ];
 
 let vm = new Vue({
-    el: '#app',
+    el: '#b-button',
     data: {
-        items: items
+        loggedInButton: 'ログイン済みのため購入できます'
     }
-});
-
-vm.$watch(function () {
-    return this.items[0].quantity
-}, function (quantity) {
-    console.log(quantity)
 });
