@@ -12,6 +12,9 @@
     <p v-bind:style="errorMessageStyle">
         {{1000 | numberWithDelimiter}}円以上からご購入いただけます
     </p>
+    <p v-for="item in items" v-bind:key="item">
+        {{item}}
+    </p>
 </div>
 <script src="./vue.js"></script>
 <script src="./app.js"></script>
