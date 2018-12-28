@@ -3,18 +3,26 @@
 <title>はじめてのVue.js</title>
 <body>
 <div id="app">
-    <p>
-        小計:{{totalPrice | numberWithDelimiter}}円(税抜)
-    </p>
-    <p>
-        合計:{{totalPriceWithTax | numberWithDelimiter}}円(税込)
-    </p>
-    <p v-bind:style="errorMessageStyle">
-        {{1000 | numberWithDelimiter}}円以上からご購入いただけます
-    </p>
-    <p v-for="item in items" v-bind:key="item">
-        {{item}}
-    </p>
+    <ul>
+        <li v-for="item in items" :key="index">
+            {{item.name}}の個数 = <input type="number" v-model="item.quantity" min="0">
+        </li>
+    </ul>
+    <hr>
+    <div v-bind:style="errorMessageStyle">
+        <p>
+            小計:{{totalPrice | numberWithDelimiter}}円(税抜)
+        </p>
+        <p>
+            合計:{{totalPriceWithTax | numberWithDelimiter}}円(税込)
+        </p>
+        <p>
+            {{1000 | numberWithDelimiter}}円以上からご購入いただけます
+        </p>
+        <button v-bind:disabled="!canBuy" v-on:click="doBuy">
+            購入
+        </button>
+    </div>
 </div>
 <script src="./vue.js"></script>
 <script src="./app.js"></script>

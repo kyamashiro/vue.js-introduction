@@ -45,17 +45,19 @@ let vm = new Vue({
         canBuy: function () {
             return this.totalPrice >= 1000
         },
-        errorMessageClass: function () {
-            return {
-                error: !this.canBuy
-            }
-        },
         errorMessageStyle: function () {
             return {
                 border: this.canBuy ? '' : '1px solid red',
                 color: this.canBuy ? '' : 'red',
-                display: this.canBuy ? 'none' : ''
             }
+        }
+    },
+    methods: {
+        doBuy: function () {
+            alert(this.totalPriceWithTax + "円のお買い上げ!")
+            this.items.forEach(function (item) {
+                item.quantity = 0
+            })
         }
     }
 });
