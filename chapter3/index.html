@@ -11,6 +11,11 @@
 <div id="app">
     <item-desc v-bind:item-name='myItem'></item-desc>
 </div>
+<div id="fruits-component">
+    <ol>
+        <fruits-item-name v-for="fruit in fruitsItems" :key="fruit.name" :fruits-item="fruit"></fruits-item-name>
+    </ol>
+</div>
 <script src="../vue.js"></script>
 <script src="main.js"></script>
 </body>
