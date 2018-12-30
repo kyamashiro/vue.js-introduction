@@ -13,3 +13,19 @@ Vue.component('input-date-with-today', {
 new Vue({
     el: '#example'
 });
+
+Vue.component('item-desc', {
+    props: {
+        itemName: {
+            type: String
+        }
+    },
+    template: '<p>{{itemName}}は便利です</p>'
+});
+
+new Vue({
+    el: '#app',
+    data: {
+        myItem: 'pen'
+    }
+});
