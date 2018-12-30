@@ -60,3 +60,44 @@ new Vue({
         ]
     }
 });
+
+/*
+counter-buttonを押すと､addToCart()メソッドが呼ばれ､Dataのcounterが増えると同時に
+$emit('increment')でイベントが発火し､v-on='increment'のイベントincrementCartStatusが実行され､合計が増える
+ */
+//子コンポーネント
+var counterButton = Vue.extend({
+    template: '<span>{{counter}}個<button v-on:click="addToCart">追加</button></span>',
+    data: function () {
+        return {
+            counter: 0
+        }
+    },
+    methods: {
+        addToCart: function () {
+            this.counter += 1;
+            //increment イベントの発火
+            this.$emit('increment')
+        }
+    }
+});
+
+//親コンポーネントのカート
+new Vue({
+    el: '#fruits-counter',
+    components: {
+        'counter-button': counterButton
+    },
+    data: {
+        total: 0,
+        fruits: [
+            {name: '梨'},
+            {name: 'いちご'}
+        ]
+    },
+    methods: {
+        incrementCartStatus: function () {
+            this.total += 1
+        }
+    }
+});
