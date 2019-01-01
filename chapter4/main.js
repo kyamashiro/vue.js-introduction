@@ -13,6 +13,12 @@ const router = new VueRouter({
             component: {
                 template: '<div>ユーザ一覧ページ</div>'
             }
+        },
+        {
+            path: '/users/:userid',
+            component: {
+                template: '<div>ユーザIDは{{$route.params.userid}}です</div>'
+            }
         }
     ]
 });
