@@ -1,10 +1,16 @@
 var headerTemplate =
     '<div style="color: grey">' +
-    '<slot name="header">親から何も渡ってこないときこれが表示される</slot>' +
+    '<slot name="header">No title</slot>' +
     '</div>';
 
 Vue.component('page-header', {
     template: headerTemplate
+});
+
+let contentTemplate = '<div><slot name="content">No Contents</slot></div>';
+
+Vue.component('page-content', {
+    template: contentTemplate
 });
 
 new Vue({
