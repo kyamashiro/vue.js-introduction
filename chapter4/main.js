@@ -151,6 +151,55 @@ let UserCreate = {
     }
 };
 
+//Auth
+let Auth = {
+    login: function (email, pass, cb) {
+        setTimeout(function () {
+            if (email === 'vue@example.com' && pass === 'vue') {
+                localStorage.token = Math.random().toString(36).substring(7);
+                if (cb) {
+                    cb(true)
+                }
+            } else {
+                if (cb) {
+                    cb(false)
+                }
+            }
+        }, 0)
+    },
+
+    logout: function () {
+        delete localStorage.token
+    },
+
+    loggedin: function () {
+        return !!localStorage.token
+    }
+};
+
+let Login = {
+    template: '#login',
+    data: function () {
+        return {
+            email: 'vue@example.com',
+            password: '',
+            error: false,
+            required: true
+        }
+    },
+    methods: {
+        login: function () {
+            Auth.login(this.email, this.password, (function (loggedin) {
+                if (!loggedin) {
+                    this.error = true
+                } else {
+                    this.$router.replace(this.$route.query.redirect || '/')
+                }
+            }).bind(this))
+        }
+    }
+};
+
 //ルータコンストラクタ
 const router = new VueRouter({
     //ルート定義を配列で渡す
@@ -167,16 +216,46 @@ const router = new VueRouter({
         },
         {
             path: '/users/new',
-            component: UserCreate
+            component: UserCreate,
+            beforeEnter: function (to, from, next) {
+                if (!Auth.loggedin()) {
+                    next({
+                        path: '/login',
+                        query: {
+                            redirect: to.fullPath
+                        }
+                    })
+                } else {
+                    next()
+                }
+            }
         },
         {
             path: '/users/:userid',
             component: UserDetail
+        },
+        {
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/logout',
+            beforeEnter: function (to, from, next) {
+                Auth.logout();
+                next('/top')
+            }
+        },
+        {
+            path: '*',
+            redirect: '/top'
         }
     ]
 });
 
 let app = new Vue({
     el: '#app',
+    data: {
+        Auth: Auth
+    },
     router: router
 });

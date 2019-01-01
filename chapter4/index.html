@@ -9,7 +9,9 @@
     <nav>
         <router-link to="/top">トップページ</router-link>
         <router-link to="/users">ユーザ一覧</router-link>
-        <router-link to="/users/new">ユーザ新規登録</router-link>
+        <router-link to="/users/new?redirect=true">ユーザ新規登録</router-link>
+        <router-link to="/login" v-show="!Auth.loggedin()">ログイン</router-link>
+        <router-link to="/logout" v-show="Auth.loggedin()">ログアウト</router-link>
     </nav>
     <router-view></router-view>
 </div>
@@ -58,6 +60,20 @@
                 <input type="button" @click="createUser" value="送信">
             </div>
         </div>
+    </div>
+</script>
+<script type="text/x-template" id="login">
+    <div>
+        <h2>Login</h2>
+        <p v-if="$route.query.redirect">
+            ログインしてください
+        </p>
+        <form @submit.prevent="login">
+            <label><input type="email" placeholder="email" v-model="email"></label>
+            <label><input type="password" placeholder="password" v-model="password"></label>
+            <button type="submit">ログイン</button>
+            <p v-if="error" class="error">ログインに失敗しました</p>
+        </form>
     </div>
 </script>
 <script src="../vue.js"></script>
