@@ -1,3 +1,26 @@
+let UserList = {
+    template: '#user-list',
+    data: function () {
+        return {
+            users: function () {
+                return []
+            },
+            error: null
+        }
+    },
+    beforeRouteEnter: function (to, from, next) {
+        getUsers(function (err, users) {
+            if (err) {
+                this.error = err.toString()
+            } else {
+                next(function (vm) {
+                    vm.users = users
+                })
+            }
+        }).bind(this)
+    }
+};
+
 //ルータコンストラクタ
 const router = new VueRouter({
     //ルート定義を配列で渡す
@@ -10,8 +33,13 @@ const router = new VueRouter({
         },
         {
             path: '/users',
-            component: {
-                template: '<div>ユーザ一覧ページ</div>'
+            component: UserList,
+            beforeEnter: function (to, from, next) {
+                if (to.query.redirect === 'true') {
+                    next('/top')
+                } else {
+                    next()
+                }
             }
         },
         {
@@ -26,14 +54,4 @@ const router = new VueRouter({
 let app = new Vue({
     el: '#app',
     router: router
-});
-
-//グローバルフック関数
-//ページ遷移が起こる直前に関数が実行される
-router.beforeEach(function (to, from, next) {
-    if (to.path === '/users') {
-        next('/top')
-    } else {
-        next()
-    }
 });
