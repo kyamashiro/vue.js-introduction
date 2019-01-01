@@ -1,0 +1,26 @@
+{
+  "name": "vue.js-introduction",
+  "version": "1.0.0",
+  "description": "Vue.js入門 基礎から実践アプリケーション開発まで",
+  "main": "vue.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyamashiro/vue.js-introduction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyamashiro/vue.js-introduction/issues"
+  },
+  "homepage": "https://github.com/kyamashiro/vue.js-introduction#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "vue": "^2.5.21"
+  }
+}
