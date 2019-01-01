@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<!--page親コンポーネントの下にpage-headerという子コンポーネントを置く-->
+<page>
+    <div id="fruits-list">
+        <page-header>
+            <h1 slot="header">夏の果物</h1>
+        </page-header>
+        <ul>
+            <li>スイカ</li>
+            <li>マンゴー</li>
+        </ul>
+    </div>
+</page>
 <body>
 <div id="example">
     <input-date-with-today></input-date-with-today>
@@ -25,5 +37,6 @@
 </div>
 <script src="../vue.js"></script>
 <script src="main.js"></script>
+<script src="header.js"></script>
 </body>
 </html>
