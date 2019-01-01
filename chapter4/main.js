@@ -1,23 +1,50 @@
+//ダミーAPI
+let getUsers = function (callback) {
+    setTimeout(function () {
+        callback(null, [
+            {
+                id: 1,
+                name: 'Takuya Tejima'
+            },
+            {
+                id: 2,
+                name: 'Yohei Noda'
+            }
+        ])
+    }, 1000)
+};
+
 let UserList = {
     template: '#user-list',
     data: function () {
         return {
+            loading: false,
             users: function () {
-                return []
+                return [];
             },
             error: null
         }
     },
-    beforeRouteEnter: function (to, from, next) {
-        getUsers(function (err, users) {
-            if (err) {
-                this.error = err.toString()
-            } else {
-                next(function (vm) {
-                    vm.users = users
-                })
-            }
-        }).bind(this)
+
+    created: function () {
+        this.fetchData()
+    },
+
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData: function () {
+            this.loading = true;
+            getUsers((function (err, users) {
+                this.loading = false;
+                if (err) {
+                    this.error = err.toString()
+                } else {
+                    this.users = users
+                }
+            }).bind(this))
+        }
     }
 };
 
@@ -33,20 +60,7 @@ const router = new VueRouter({
         },
         {
             path: '/users',
-            component: UserList,
-            beforeEnter: function (to, from, next) {
-                if (to.query.redirect === 'true') {
-                    next('/top')
-                } else {
-                    next()
-                }
-            }
-        },
-        {
-            path: '/users/:userid',
-            component: {
-                template: '<div>ユーザIDは{{$route.params.userid}}です</div>'
-            }
+            component: UserList
         }
     ]
 });
