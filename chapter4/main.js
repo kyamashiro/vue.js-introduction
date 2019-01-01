@@ -1,16 +1,21 @@
-//ダミーAPI
+//APIで取得したデータ
+const userData = [
+    {
+        id: 1,
+        name: 'Takuya Tejima',
+        description: '東南アジアで働くエンジニアです'
+    },
+    {
+        id: 2,
+        name: 'Yohei Noda',
+        description: 'アウトドアが趣味のエンジニアです'
+    }
+];
+
+//ユーザ一覧のデータを取得
 let getUsers = function (callback) {
     setTimeout(function () {
-        callback(null, [
-            {
-                id: 1,
-                name: 'Takuya Tejima'
-            },
-            {
-                id: 2,
-                name: 'Yohei Noda'
-            }
-        ])
+        callback(null, userData)
     }, 1000)
 };
 
@@ -48,6 +53,48 @@ let UserList = {
     }
 };
 
+//ユーザ詳細のデータを取得
+let getUser = function (userid, callback) {
+    setTimeout(function () {
+        let filteredUsers = userData.filter(function (user) {
+            return user.id === parseInt(userid, 10)
+        });
+        callback(null, filteredUsers && filteredUsers[0])
+    }, 1000)
+};
+
+let UserDetail = {
+    template: '#user-detail',
+    data: function () {
+        return {
+            loading: false,
+            user: null,
+            error: null
+        }
+    },
+
+    created: function () {
+        this.fetchData()
+    },
+
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData: function () {
+            this.loading = true;
+            getUser(this.$route.params.userid, (function (err, user) {
+                this.loading = false;
+                if (err) {
+                    this.error = err.toString()
+                } else {
+                    this.user = user
+                }
+            }).bind(this))
+        }
+    }
+};
+
 //ルータコンストラクタ
 const router = new VueRouter({
     //ルート定義を配列で渡す
@@ -61,6 +108,10 @@ const router = new VueRouter({
         {
             path: '/users',
             component: UserList
+        },
+        {
+            path: '/users/:userid',
+            component: UserDetail
         }
     ]
 });
