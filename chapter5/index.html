@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <button @click="isShown = !isShown">表示の切り替え</button>
+    <transition>
+        <p v-show="isShown">Hello,world!</p>
+    </transition>
+</div>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
