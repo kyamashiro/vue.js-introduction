@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue.app</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 <body>
 <div id="app">
+    <p>
+        <input type="text" v-model="animationClass">
+    </p>
     <button @click="isShown = !isShown">表示の切り替え</button>
-    <transition>
-        <p v-show="isShown">Hello,world!</p>
+    <!--カスタムトランジションクラス-->
+    <transition :enter-active-class="activeClass" :leave-active-class="activeClass">
+        <p v-show="isShown">Hello, world!</p>
     </transition>
 </div>
 <script src="../vue.js"></script>
