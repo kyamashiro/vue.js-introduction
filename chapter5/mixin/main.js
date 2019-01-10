@@ -4,6 +4,9 @@ let Sharable = {
             _isProcessing: false
         }
     },
+    created: function () {
+        console.log("Sharableミックスインのフックが呼ばれました")
+    },
     methods: {
         share: function () {
             if (this._isProcessing) {
@@ -24,8 +27,10 @@ let Sharable = {
 
 let IconShareButton = {
     mixins: [Sharable],
-    template:
-        '<button @click="share"><i class="fas fa-share-square"></i></button>'
+    template: '<button @click="share"><i class="fas fa-share-square"></i></button>',
+    created: function () {
+        console.log("IconShareButtonのミックスインのフックが呼ばれました")
+    },
 };
 
 let TextShareButton = {
@@ -35,7 +40,10 @@ let TextShareButton = {
         return {
             buttonLabel: 'シェアする',
         }
-    }
+    },
+    created: function () {
+        console.log("TextShareButtonミックスインのフックが呼ばれました")
+    },
 };
 
 new Vue({
