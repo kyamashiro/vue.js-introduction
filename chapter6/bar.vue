@@ -7,8 +7,19 @@
         <p>
             これはBarコンポーネントです
         </p>
+        <foo class="header"></foo>
     </div>
 </template>
+
+<script>
+    import Foo from './foo'
+
+    export default {
+        components: {
+            Foo
+        }
+    }
+</script>
 
 <style scoped>
     .bar {
