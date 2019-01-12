@@ -1,4 +1,4 @@
-# kandan-app
+# kanban-app
 
 > A Vue.js project
 
