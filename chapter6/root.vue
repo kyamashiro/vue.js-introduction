@@ -34,4 +34,9 @@
     .header {
         font-size: 200%;
     }
+
+    /*グローバルに適用される*/
+    p {
+        text-decoration-line: underline;
+    }
 </style>

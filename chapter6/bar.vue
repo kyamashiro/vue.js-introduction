@@ -10,12 +10,6 @@
     </div>
 </template>
 
-<style>
-    p {
-        text-decoration: underline;
-    }
-</style>
-
 <style scoped>
     .bar {
         border: solid 1px gray;
