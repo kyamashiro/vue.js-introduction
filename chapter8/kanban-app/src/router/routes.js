@@ -1,6 +1,6 @@
 import KbnBoardView from '@/components/templates/KbnBoardView.vue'
 import KbnLoginView from '@/components/templates/KbnLoginView.vue'
-import KbnTaskDetailModal from '@/components/templates/KbnDetailmodal.vue'
+import KbnTaskDetailModal from '@/components/templates/KbnTaskDetailmodal.vue'
 
 // Vue Routerはコンポーネントとルートをマッピングすれば動作する
 export default [{
